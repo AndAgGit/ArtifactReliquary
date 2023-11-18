@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ArtifactReliquary"
         tools:targetApi="31">
         <activity
+            android:name=".AccountOptionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginOptionActivity"
             android:exported="false" />
         <activity

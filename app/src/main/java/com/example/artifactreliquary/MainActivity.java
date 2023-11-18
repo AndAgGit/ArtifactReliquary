@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.artifactreliquary.databinding.ActivityMainBinding;
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button wikiButton, collectionButton, loginButton;
 
-    UserDAO userDAO;
+    public static UserDAO userDAO;
     List<User> userList;
 
     @Override
@@ -31,7 +32,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         wikiButton = binding.wikiButton;
+        wikiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Not ready yet", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         collectionButton = binding.collectionButton;
+        collectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Not ready yet", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         loginButton = binding.accountButton;
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -43,19 +57,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         userDAO = Room.databaseBuilder(this,
-                AppDatabase.class,
-                "Database")
+                        AppDatabase.class,
+                        "Database")
                 .allowMainThreadQueries()
                 .build().getUserDAO();
 
         userList = userDAO.getUsers();
-        if(userList.size()==0){
+        if (userList.size() == 0) {
             System.out.println("Populating default users");
             userDAO.insert(new User("admin", "secretAdminPassword", false));
         }
     }
 
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
-    }}
+    }
+}
