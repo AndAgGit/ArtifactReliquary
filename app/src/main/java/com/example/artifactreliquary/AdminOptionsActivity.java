@@ -7,16 +7,17 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.artifactreliquary.databinding.ActivityAccountOptionsBinding;
+import com.example.artifactreliquary.databinding.ActivityAdminOptionsBinding;
 
 public class AdminOptionsActivity extends AppCompatActivity {
-    ActivityAccountOptionsBinding binding;
+    ActivityAdminOptionsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_options);
 
-        binding = ActivityAccountOptionsBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminOptionsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
 

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = LoginOptionActivity.getIntent(getApplicationContext());
                     startActivity(intent);
                 }else {
-                    if(userList.get(0).getUserID()==1){
+                    if(userList.get(0).isAdmin()){
                         Intent intent = AdminOptionsActivity.getIntent(getApplicationContext());
                         startActivity(intent);
                     }else{
@@ -75,12 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
         userList = userDAO.getUsers();
         if (userList.size() == 0) {
-            System.out.println("Populating default users");
-
             userDAO.insert(
-                    new User("admin", "secretAdminPassword", false),
-                    new User("user", "userPassword", false
-                    ));
+                    new User("admin", "secretAdminPassword", false, true),
+                    new User("user", "userPassword", false, false)
+                    );
+            Toast.makeText(getApplicationContext(), "Populating DB", Toast.LENGTH_LONG).show();
         }
     }
 

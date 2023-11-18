@@ -54,7 +54,7 @@ public class LoginOptionActivity extends AppCompatActivity {
                             toUpdate.setActive(true);
                             MainActivity.userDAO.update(toUpdate);
 
-                            if(userList.get(0).getUserID()==1){
+                            if(userList.get(0).isAdmin()){
                                 Intent intent = AdminOptionsActivity.getIntent(getApplicationContext());
                                 startActivity(intent);
                             }else{

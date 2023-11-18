@@ -20,10 +20,14 @@ public class User {
     @NonNull
     private boolean isActive;
 
-    public User(@NonNull String username, @NonNull String password, @NonNull boolean isActive) {
+    @NonNull
+    private boolean isAdmin;
+
+    public User(@NonNull String username, @NonNull String password, boolean isActive, boolean isAdmin) {
         this.username = username;
         this.password = password;
         this.isActive = isActive;
+        this.isAdmin = isAdmin;
     }
 
     public int getUserID() {
@@ -58,17 +62,25 @@ public class User {
         isActive = active;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userID == user.userID && isActive == user.isActive && username.equals(user.username) && password.equals(user.password);
+        return userID == user.userID && isActive == user.isActive && isAdmin == user.isAdmin && username.equals(user.username) && password.equals(user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userID, username, password, isActive);
+        return Objects.hash(userID, username, password, isActive, isAdmin);
     }
 
     @Override
@@ -78,6 +90,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", isActive=" + isActive +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 }
