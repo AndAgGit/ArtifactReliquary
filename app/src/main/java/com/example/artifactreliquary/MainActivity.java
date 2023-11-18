@@ -51,8 +51,19 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = LoginOptionActivity.getIntent(getApplicationContext());
-                startActivity(intent);
+                userList = userDAO.getActiveUser();
+                if(userList.size()==0){
+                    Intent intent = LoginOptionActivity.getIntent(getApplicationContext());
+                    startActivity(intent);
+                }else {
+                    if(userList.get(0).getUserID()==1){
+                        Intent intent = AdminOptionsActivity.getIntent(getApplicationContext());
+                        startActivity(intent);
+                    }else{
+                        Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());
+                        startActivity(intent);
+                    }
+                }
             }
         });
 
@@ -65,7 +76,11 @@ public class MainActivity extends AppCompatActivity {
         userList = userDAO.getUsers();
         if (userList.size() == 0) {
             System.out.println("Populating default users");
-            userDAO.insert(new User("admin", "secretAdminPassword", false));
+
+            userDAO.insert(
+                    new User("admin", "secretAdminPassword", false),
+                    new User("user", "userPassword", false
+                    ));
         }
     }
 

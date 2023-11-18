@@ -1,15 +1,14 @@
 package com.example.artifactreliquary;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.artifactreliquary.databinding.ActivityAccountOptionsBinding;
-import com.example.artifactreliquary.databinding.ActivityLoginOptionBinding;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class AccountOptionsActivity extends AppCompatActivity {
+import com.example.artifactreliquary.databinding.ActivityAccountOptionsBinding;
+
+public class AdminOptionsActivity extends AppCompatActivity {
     ActivityAccountOptionsBinding binding;
 
     @Override
@@ -22,7 +21,7 @@ public class AccountOptionsActivity extends AppCompatActivity {
     }
 
     public static Intent getIntent(Context context){
-        Intent intent = new Intent(context, AccountOptionsActivity.class);
+        Intent intent = new Intent(context, AdminOptionsActivity.class);
         return intent;
     }
 }

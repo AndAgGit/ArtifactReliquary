@@ -40,7 +40,7 @@ public class LoginOptionActivity extends AppCompatActivity {
                 String userToFind = usernameInput.getText().toString();
                 String passwordToMatch = passwordInput.getText().toString();
                 if(userToFind.length()==0){
-                    Toast.makeText(getApplicationContext(), "Please actually enter something :\\", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please input a username", Toast.LENGTH_LONG).show();
                 }else {
                     List<User> userList = MainActivity.userDAO.getUserByUsername(userToFind);
                     if (userList.size() == 0) {
@@ -49,10 +49,18 @@ public class LoginOptionActivity extends AppCompatActivity {
                         if(!userList.get(0).getPassword().equals(passwordToMatch)){
                             Toast.makeText(getApplicationContext(), "Password for "+userToFind+" does not match", Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(getApplicationContext(), "Successful Log In", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Successful Log In", Toast.LENGTH_SHORT).show();
                             User toUpdate = userList.get(0);
-                            User temp = new User(toUpdate.getUsername(), toUpdate.getPassword(), true);
-                            MainActivity.userDAO.update(temp);
+                            toUpdate.setActive(true);
+                            MainActivity.userDAO.update(toUpdate);
+
+                            if(userList.get(0).getUserID()==1){
+                                Intent intent = AdminOptionsActivity.getIntent(getApplicationContext());
+                                startActivity(intent);
+                            }else{
+                                Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());
+                                startActivity(intent);
+                            }
                         }
                     }
                 }
