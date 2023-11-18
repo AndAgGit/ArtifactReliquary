@@ -14,7 +14,6 @@ import com.example.artifactreliquary.databinding.ActivityMainBinding;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    static int activeUserID;
 
     ActivityMainBinding binding;
 
@@ -25,12 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("MainActivity");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        activeUserID = 0;
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -42,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = LoginOptionActivity.getIntent(getApplicationContext(), activeUserID);
+                Intent intent = LoginOptionActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });
@@ -60,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static Intent getIntent(Context context, double activeUserID){
+    public static Intent getIntent(Context context){
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("activeUserID", activeUserID);
         return intent;
     }}

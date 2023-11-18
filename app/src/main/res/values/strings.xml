@@ -6,4 +6,6 @@
     <string name="account">Account</string>
     <string name="log_nin">Log\nIn</string>
     <string name="create_naccount">Create\nAccount</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>

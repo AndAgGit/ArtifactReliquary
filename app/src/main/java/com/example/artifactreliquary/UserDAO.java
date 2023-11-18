@@ -28,4 +28,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM users WHERE username = :name")
     List<User> getUserByUsername(String name);
+
+    @Query("SELECT * FROM users WHERE isActive = 1")
+    List<User> getActiveUser();
 }
