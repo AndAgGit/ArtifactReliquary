@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("MainActivity");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         wikiButton = binding.wikiButton;
         collectionButton = binding.collectionButton;
 
-        loginButton = binding.loginButton;
+        loginButton = binding.accountButton;
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

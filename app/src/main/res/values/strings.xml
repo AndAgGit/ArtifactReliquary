@@ -4,4 +4,6 @@
     <string name="browse_nartifacts">Browse\nArtifacts</string>
     <string name="my_ncollection">My\nCollection</string>
     <string name="account">Account</string>
+    <string name="log_nin">Log\nIn</string>
+    <string name="create_naccount">Create\nAccount</string>
 </resources>
