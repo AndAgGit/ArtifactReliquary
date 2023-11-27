@@ -39,28 +39,24 @@ public class LoginOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String userToFind = usernameInput.getText().toString();
                 String passwordToMatch = passwordInput.getText().toString();
-                if(userToFind.length()==0){
+                if (userToFind.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Please input a username", Toast.LENGTH_LONG).show();
-                }else {
+                } else {
                     List<User> userList = MainActivity.userDAO.getUserByUsername(userToFind);
                     if (userList.size() == 0) {
                         Toast.makeText(getApplicationContext(), "No user with the username " + userToFind, Toast.LENGTH_LONG).show();
                     } else {
-                        if(!userList.get(0).getPassword().equals(passwordToMatch)){
-                            Toast.makeText(getApplicationContext(), "Password for "+userToFind+" does not match", Toast.LENGTH_LONG).show();
-                        }else{
+                        if (!userList.get(0).getPassword().equals(passwordToMatch)) {
+                            Toast.makeText(getApplicationContext(), "Password for " + userToFind + " does not match", Toast.LENGTH_LONG).show();
+                        } else {
                             Toast.makeText(getApplicationContext(), "Successful Log In", Toast.LENGTH_SHORT).show();
                             User toUpdate = userList.get(0);
                             toUpdate.setActive(true);
                             MainActivity.userDAO.update(toUpdate);
 
-                            if(userList.get(0).isAdmin()){
-                                Intent intent = AdminOptionsActivity.getIntent(getApplicationContext());
-                                startActivity(intent);
-                            }else{
-                                Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());
-                                startActivity(intent);
-                            }
+
+                            Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());
+                            startActivity(intent);
                         }
                     }
                 }

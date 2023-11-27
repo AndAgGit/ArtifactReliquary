@@ -56,13 +56,8 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = LoginOptionActivity.getIntent(getApplicationContext());
                     startActivity(intent);
                 }else {
-                    if(userList.get(0).isAdmin()){
-                        Intent intent = AdminOptionsActivity.getIntent(getApplicationContext());
-                        startActivity(intent);
-                    }else{
-                        Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());
-                        startActivity(intent);
-                    }
+                    Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());
+                    startActivity(intent);
                 }
             }
         });

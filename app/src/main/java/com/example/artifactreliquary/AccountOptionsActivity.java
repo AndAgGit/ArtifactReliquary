@@ -16,7 +16,7 @@ import java.util.List;
 public class AccountOptionsActivity extends AppCompatActivity {
     ActivityAccountOptionsBinding binding;
 
-    Button logOutButton;
+    Button logOutButton, adminButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,19 @@ public class AccountOptionsActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 return false;
+            }
+        });
+
+        adminButton = binding.adminButton;
+        if(MainActivity.userDAO.getActiveUser().get(0).isAdmin()){
+            adminButton.setEnabled(true);
+            adminButton.setVisibility(View.VISIBLE);
+        }
+        adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intet = AdminOptionsActivity.getIntent(getApplicationContext());
+                startActivity(intet);
             }
         });
     }
