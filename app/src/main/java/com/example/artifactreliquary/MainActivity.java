@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     public static UserDAO userDAO;
     List<User> userList;
 
+    public static SetDAO setDAO;
+    List<Set> setList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +74,24 @@ public class MainActivity extends AppCompatActivity {
         userList = userDAO.getUsers();
         if (userList.size() == 0) {
             userDAO.insert(
+                    //populating default users
                     new User("admin", "secretAdminPassword", false, true),
                     new User("user", "userPassword", false, false)
                     );
+            Toast.makeText(getApplicationContext(), "Populating DB", Toast.LENGTH_LONG).show();
+        }
+
+        setDAO = Room.databaseBuilder(this,
+                        AppDatabase.class,
+                        "Database")
+                .allowMainThreadQueries()
+                .build().getSetDAO();
+
+        setList = setDAO.getSets();
+        if (setList.size() == 0) {
+            setDAO.insert(
+                    //populating set table
+            );
             Toast.makeText(getApplicationContext(), "Populating DB", Toast.LENGTH_LONG).show();
         }
     }
