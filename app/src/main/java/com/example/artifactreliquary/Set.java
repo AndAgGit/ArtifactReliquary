@@ -18,12 +18,61 @@ public class Set {
     private String twoPiece;
 
     @NonNull
-    private  String fourPiece;
+    private String fourPiece;
 
-    public Set(@NonNull String name, @NonNull String twoPiece, @NonNull String fourPiece) {
+    @NonNull
+    private int starMin;
+
+    @NonNull
+    private int starMax;
+
+    public Set(@NonNull String name, @NonNull String twoPiece, @NonNull String fourPiece, @NonNull int starMin, @NonNull int starMax) {
         this.name = name;
         this.twoPiece = twoPiece;
         this.fourPiece = fourPiece;
+        this.starMin = starMin;
+        this.starMax = starMax;
+    }
+
+    public int getStarMax() {
+        return starMax;
+    }
+
+    public void setStarMax(int starMax) {
+        this.starMax = starMax;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Set set = (Set) o;
+        return setID == set.setID && starMin == set.starMin && starMax == set.starMax && name.equals(set.name) && twoPiece.equals(set.twoPiece) && fourPiece.equals(set.fourPiece);
+    }
+
+    @Override
+    public String toString() {
+        return "Set{" +
+                "setID=" + setID +
+                ", name='" + name + '\'' +
+                ", twoPiece='" + twoPiece + '\'' +
+                ", fourPiece='" + fourPiece + '\'' +
+                ", starMin=" + starMin +
+                ", starMax=" + starMax +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(setID, name, twoPiece, fourPiece, starMin, starMax);
+    }
+
+    public int getStarMin() {
+        return starMin;
+    }
+
+    public void setStarMin(int starMin) {
+        this.starMin = starMin;
     }
 
     public int getSetID() {
@@ -61,26 +110,4 @@ public class Set {
         this.fourPiece = fourPiece;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Set set = (Set) o;
-        return setID == set.setID && name.equals(set.name) && twoPiece.equals(set.twoPiece) && fourPiece.equals(set.fourPiece);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(setID, name, twoPiece, fourPiece);
-    }
-
-    @Override
-    public String toString() {
-        return "Set{" +
-                "setID=" + setID +
-                ", name='" + name + '\'' +
-                ", twoPiece='" + twoPiece + '\'' +
-                ", fourPiece='" + fourPiece + '\'' +
-                '}';
-    }
 }
