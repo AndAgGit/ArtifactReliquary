@@ -13,4 +13,6 @@
     <string name="log_out">Log Out</string>
     <string name="admin">Admin</string>
     <string name="sets">Sets</string>
+    <string name="four_piece_effect">Four Piece Effect</string>
+    <string name="two_piece_effect">Two Piece Effect</string>
 </resources>
