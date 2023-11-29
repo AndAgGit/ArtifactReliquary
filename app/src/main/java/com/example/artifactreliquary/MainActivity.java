@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         wikiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Not ready yet", Toast.LENGTH_SHORT).show();
+                Intent intent = SetsActivity.getIntent(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     new Set("Prayers for Destiny", "Affected by Hydro for 40% less time.", "No four piece set bonus.",3,4),
                     new Set("Prayers for Illumination", "Affected by Pyro for 40% less time.", "No four piece set bonus.",3,4),
                     new Set("Prayers to Springtime", "Affected by Cryo for 40% less time.", "No four piece set bonus.",3,4),
-                    new Set("Glafiator's Finale", "ATK +18%", "If the wielder of this artifact set uses a Sword, Claymore or Polearm, increases their Normal Attack DMG by 35%.",4,5),
+                    new Set("Gladiator's Finale", "ATK +18%", "If the wielder of this artifact set uses a Sword, Claymore or Polearm, increases their Normal Attack DMG by 35%.",4,5),
                     new Set("Wanderer's Troupe", "Increases Elemental Mastery by 80", "Increases Charged Attack DMG by 35% if the character uses a Catalyst or Bow.",4,5),
                     new Set("Noblesse Oblige", "Elemental Burst DMG +20%", "Using an Elemental Burst increases all party members' ATK by 20% for 12s. This effect cannot stack.",4,5),
                     new Set("Bloodstained Chivalry","Physical DMG Bonus +25%", "After defeating an opponent, increases Charged Attack DMG by 50%, and reduces its Stamina cost to 0 for 10s. Also triggers with wild animals such as boars, squirrels and frogs.",4,5),
