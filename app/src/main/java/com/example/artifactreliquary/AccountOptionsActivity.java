@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.artifactreliquary.databinding.ActivityAccountOptionsBinding;
-import com.example.artifactreliquary.databinding.ActivityLoginOptionBinding;
 
 import java.util.List;
 

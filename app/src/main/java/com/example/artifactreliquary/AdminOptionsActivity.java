@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.artifactreliquary.databinding.ActivityAccountOptionsBinding;
 import com.example.artifactreliquary.databinding.ActivityAdminOptionsBinding;
 
 import java.util.List;

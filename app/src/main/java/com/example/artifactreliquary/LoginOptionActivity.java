@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.artifactreliquary.databinding.ActivityLoginOptionBinding;
-import com.example.artifactreliquary.databinding.ActivityMainBinding;
 
 import java.util.List;
 
