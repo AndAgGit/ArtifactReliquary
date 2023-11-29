@@ -21,7 +21,17 @@
         app:layout_constraintVertical_bias="0.075"
         android:fontFamily="serif"
         android:textColor="@color/black"/>
+    <LinearLayout
+        android:id="@+id/starsDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/artifactName">
 
+    </LinearLayout>
     <Button
         android:id="@+id/twoPieceLabel"
         android:layout_width="wrap_content"
@@ -37,7 +47,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/two_piece_effect"
-        app:layout_constraintTop_toBottomOf="@+id/artifactName"
+        app:layout_constraintTop_toBottomOf="@+id/starsDisplay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp"/>

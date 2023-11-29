@@ -4,7 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.artifactreliquary.databinding.ActivitySetDisplay2Binding;
@@ -17,6 +23,7 @@ public class SetDisplay extends AppCompatActivity {
     TextView artifactName, twoPieceLabel, twoPieceEffect, fourPieceLabel, fourPieceEffect;
 
     ActivitySetDisplay2Binding binding;
+    LinearLayout linearLayout;
 
     List<Set> artifactSet;
 
@@ -30,6 +37,16 @@ public class SetDisplay extends AppCompatActivity {
         binding = ActivitySetDisplay2Binding.inflate(getLayoutInflater());
 
         artifactName = binding.artifactName;
+
+        linearLayout = binding.starsDisplay;
+        //ideally this would show how many stars the artifact is
+        for(int i=0;i<artifactSet.get(0).getStarMax();i++){
+            ImageView star = new ImageView(getApplicationContext());
+            star.setBackgroundResource(R.drawable.star_foreground);
+
+            ViewGroup insertPoint = findViewById(R.id.starsDisplay);
+            insertPoint.addView(star);
+        }
 
         twoPieceLabel = binding.twoPieceLabel;
         twoPieceEffect = binding.twoPieceEffect;
