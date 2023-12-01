@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     public static SetDAO setDAO;
     List<Set> setList;
 
+    public static FavoriteDAO favoriteDAO;
+    List<Favorite> favoriteList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +50,15 @@ public class MainActivity extends AppCompatActivity {
         collectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Not ready yet", Toast.LENGTH_SHORT).show();
+                userList = userDAO.getActiveUser();
+                if (userList.size()>0){
+                    Intent intent = Favorites.getIntent(getApplicationContext());
+                    startActivity(intent);
+                }else{
+                    Intent intent = LoginOptionActivity.getIntent(getApplicationContext());
+                    Toast.makeText(getApplicationContext(),"Login to view Favorite Sets",Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
             }
         });
 
@@ -79,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     new User("admin", "secretAdminPassword", false, true),
                     new User("user", "userPassword", false, false)
                     );
-            Toast.makeText(getApplicationContext(), "Populating Default Users", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Populating Default Users", Toast.LENGTH_SHORT).show();
         }
 
         setDAO = Room.databaseBuilder(this,
@@ -153,7 +164,25 @@ public class MainActivity extends AppCompatActivity {
                     new Set("Marechaussee Hunter", "Normal and Charged Attack DMG +15%", "When current HP increases or decreases, CRIT Rate will be increased by 12% for 5s. Max 3 stacks.",4,5),
                     new Set("Golden Troupe", "Increases Elemental Skill DMG by 20%", "Increases Elemental Skill DMG by 25%. Additionally, when not on the field, Elemental Skill DMG will be further increased by 25%. This effect will be cleared 2s after taking the field.",4,5)
             );
-            Toast.makeText(getApplicationContext(), "Populating Artifact Sets", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Populating Artifact Sets", Toast.LENGTH_SHORT).show();
+
+            favoriteDAO = Room.databaseBuilder(this,
+                            AppDatabase.class,
+                            "Database")
+                    .allowMainThreadQueries()
+                    .build().getFavoriteDAO();
+
+            favoriteList = favoriteDAO.getFavorites();
+            if (favoriteList.size() == 0) {
+                favoriteDAO.insert(
+                        //populating default favorites
+                        new Favorite(1,1),
+                        new Favorite(1,34),
+                        new Favorite(2,2)
+
+                );
+                Toast.makeText(getApplicationContext(), "Populating Default Favorites", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

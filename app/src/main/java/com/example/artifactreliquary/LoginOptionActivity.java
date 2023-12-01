@@ -49,9 +49,7 @@ public class LoginOptionActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Password for " + userToFind + " does not match", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(getApplicationContext(), "Successful Log In", Toast.LENGTH_SHORT).show();
-                            User toUpdate = userList.get(0);
-                            toUpdate.setActive(true);
-                            MainActivity.userDAO.update(toUpdate);
+                            MainActivity.userDAO.updateActiveUser(1,userList.get(0).getUserID());
 
 
                             Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());

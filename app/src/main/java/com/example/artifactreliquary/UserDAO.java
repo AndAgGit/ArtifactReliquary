@@ -30,4 +30,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM users WHERE isActive = 1")
     List<User> getActiveUser();
+
+    @Query("UPDATE users SET isActive = :active WHERE userID = :userID")
+    void updateActiveUser(int active, int userID);
 }

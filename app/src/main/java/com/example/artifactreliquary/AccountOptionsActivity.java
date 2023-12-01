@@ -30,9 +30,7 @@ public class AccountOptionsActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View v) {
                 List<User> userList = MainActivity.userDAO.getActiveUser();
-                User toUpdate = userList.get(0);
-                toUpdate.setActive(false);
-                MainActivity.userDAO.update(toUpdate);
+                MainActivity.userDAO.updateActiveUser(0, userList.get(0).getUserID());
 
                 Intent intent = MainActivity.getIntent(getApplicationContext());
                 startActivity(intent);

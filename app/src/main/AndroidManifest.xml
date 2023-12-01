@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ArtifactReliquary"
         tools:targetApi="31">
         <activity
+            android:name=".Favorites"
+            android:exported="false" />
+        <activity
             android:name=".SetDisplay"
             android:exported="false" />
         <activity

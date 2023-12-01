@@ -6,10 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities={User.class, Set.class}, version = 5)
+@Database(entities={User.class, Set.class, Favorite.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDAO getUserDAO();
     public abstract SetDAO getSetDAO();
+    public abstract FavoriteDAO getFavoriteDAO();
 
     private static volatile AppDatabase instance;
     private static final Object LOCK = new Object();
@@ -26,4 +27,6 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
+
+
 }

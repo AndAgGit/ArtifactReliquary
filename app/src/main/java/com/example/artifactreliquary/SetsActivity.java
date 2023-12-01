@@ -4,14 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.artifactreliquary.databinding.ActivitySetsBinding;
+
+import java.util.List;
 
 public class SetsActivity extends AppCompatActivity {
     ActivitySetsBinding binding;
@@ -30,7 +32,6 @@ public class SetsActivity extends AppCompatActivity {
             String setName = MainActivity.setDAO.getSetByID(i).get(0).getName();
 
             Button button = new Button(getApplicationContext());
-            button.setTextSize(20);
             button.setText(setName);
             button.setTextSize(30);
 
@@ -55,10 +56,40 @@ public class SetsActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            button.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    List<User> userList = MainActivity.userDAO.getActiveUser();
+                    if(!userList.isEmpty()){
+                        List<Favorite> favoriteList = MainActivity.favoriteDAO.getUserFavorites(userList.get(0).getUserID());
+                        Favorite fave = new Favorite(userList.get(0).getUserID(), temp);
+                        if(!containsSet(favoriteList, temp)){
+                            MainActivity.favoriteDAO.insert(fave);
+                            Toast.makeText(getApplicationContext(),"Added "+setName+" to Favorite Sets",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Already in Favorite Sets",Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Intent intent = LoginOptionActivity.getIntent(getApplicationContext());
+                        Toast.makeText(getApplicationContext(),"Log in to set favorites",Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                    }
+                    return true;
+                }
+            });
 
             ViewGroup insertPoint = findViewById(R.id.setsLinearLayout);
             insertPoint.addView(button);
         }
+    }
+
+    private boolean containsSet(List<Favorite> list, int setID){
+        for(Favorite fave: list){
+            if(fave.getSetID()==setID){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static Intent getIntent(Context context) {
@@ -68,9 +99,5 @@ public class SetsActivity extends AppCompatActivity {
 
     public int dpToPx(int dp) {
         return (int)(dp * getResources().getDisplayMetrics().density);
-    }
-
-    public int spToPx(int sp) {
-        return (int)(sp * getResources().getDisplayMetrics().scaledDensity);
     }
 }
