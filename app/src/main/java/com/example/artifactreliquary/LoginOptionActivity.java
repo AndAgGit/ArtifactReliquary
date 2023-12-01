@@ -64,7 +64,26 @@ public class LoginOptionActivity extends AppCompatActivity {
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Not ready yet", Toast.LENGTH_SHORT).show();
+                String username = usernameInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                if(username.length()>0){
+                    if(MainActivity.userDAO.getUserByUsername(username).size()>0){
+                        Toast.makeText(getApplicationContext(), username+" already in use", Toast.LENGTH_SHORT).show();
+                    }else{
+                        if(password.length()>0){
+                            User nuevo = new User(username, password, true, false);
+                            MainActivity.userDAO.insert(nuevo);
+                            Intent intent = AccountOptionsActivity.getIntent(getApplicationContext());
+                            Toast.makeText(getApplicationContext(), "Successful account creation", Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Please input a password", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "Please input a username", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
