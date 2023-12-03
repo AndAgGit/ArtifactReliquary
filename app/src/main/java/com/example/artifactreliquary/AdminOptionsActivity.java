@@ -15,7 +15,7 @@ import java.util.List;
 public class AdminOptionsActivity extends AppCompatActivity {
     ActivityAdminOptionsBinding binding;
 
-    Button logOutButton;
+    Button logOutButton, userButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

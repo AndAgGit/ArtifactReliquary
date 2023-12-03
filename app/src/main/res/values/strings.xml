@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Artifact Reliquary</string>
     <string name="artifact_reliquary">Artifact\nReliquary</string>
-    <string name="browse_nartifacts">Browse\nArtifacts</string>
+    <string name="browse_nartifacts">Browse\nSets</string>
     <string name="my_ncollection">Favorite\nSets</string>
     <string name="account">Account</string>
     <string name="log_nin">Log\nIn</string>
